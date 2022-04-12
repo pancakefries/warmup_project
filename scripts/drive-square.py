@@ -6,7 +6,7 @@ class Square(object):
 
     def __init__(self):
         # Initialize ROS node /cmd_vel to send velocity commands
-        rospy.init_node('cmd_vel')  
+        rospy.init_node('cmd_vel')
         # Initialize publisher to publish messages to /cmd_vel
         self.publisher = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
 
@@ -17,10 +17,10 @@ class Square(object):
         # Changing the value in self.lin_speed will change the size
         # of the square produced by the robot
         self.lin_speed = 0.2
-        # An angular speed of 0.314 was calculated to turn the robot 
+        # An angular speed of 0.314 was calculated to turn the robot
         # pi/2 radians (90 degrees) over the course of 5 seconds
         # (defined later as 'r')
-        self.ang_speed = 0.314
+        self.ang_speed = 0.34
 
     def run(self):
         # Robot has two possible actions, move forward or turn.
@@ -35,7 +35,7 @@ class Square(object):
         # Combine the previously defined vectors
         turn_msg = Twist(linear = forward1, angular = angular1)
         forward_msg = Twist(linear = forward2, angular = angular2)
-        
+
         r = rospy.Rate(self.rate)
         switch = 1
 
@@ -46,8 +46,8 @@ class Square(object):
                 self.publisher.publish(forward_msg)
             else:
                 self.publisher.publish(turn_msg)
-            # Multiplying switch by -1 will alternate its value between 
-            # 1 and -1 after each iteration, allowing the message sent to 
+            # Multiplying switch by -1 will alternate its value between
+            # 1 and -1 after each iteration, allowing the message sent to
             # alternate between moving forward and turning
             switch *= -1
             r.sleep()
