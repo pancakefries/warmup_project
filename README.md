@@ -19,7 +19,7 @@ My approach was to divide the LiDAR sensor into left and right halves, determine
 `scan_callback()` splits the sensor data into left and right halves by dividing the length of `ranges` by 2. It then takes each data point and makes a list of the detected objects on each side. Using these lists, it finds the minimum on each side and compares the two values to determine which side is closer to the person. It uses that information to tell the turtlebot which direction to turn and how fast to go, the latter depending on how far away the person is.
 
 ### GIF
-![Person follower GIF](/gifs/person_follower.gif)
+![Person follower GIF](/gifs/person.gif)
 
 ## Wall Follower
 ### Description
